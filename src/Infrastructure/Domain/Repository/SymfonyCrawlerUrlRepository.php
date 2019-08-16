@@ -24,7 +24,7 @@ class SymfonyCrawlerUrlRepository implements SearchUrlRepository
         'date',
         'expires',
         'content-type',
-        'last-modified',
+        SearchHeader::LAST_MODIFIED,
         'content-encoding'
     ];
 
@@ -50,10 +50,10 @@ class SymfonyCrawlerUrlRepository implements SearchUrlRepository
 
     public function findPage(SearchUrl $url, SearchDeep $deep): Page
     {
+
         if (is_null($this->responseClient)) {
             $this->getCrawler($url);
         }
-
         return new Page($url, $this->getHeaders());
     }
 
@@ -87,13 +87,12 @@ class SymfonyCrawlerUrlRepository implements SearchUrlRepository
     private function getHeaders(): SearchUrlHeaderCollection
     {
         $headers = $this->getResponseHeaders();
-        $metas = array_map(function ($header) use ($headers) {
+        $metas = [];
+        foreach (self::HEADER_ALLOWED as $header) {
             if (array_key_exists($header, $headers)) {
-                return new SearchHeader($header, $headers[$header][0]);
+                $metas[] = new SearchHeader($header, $headers[$header][0]);
             }
-        },
-            self::HEADER_ALLOWED
-        );
+        }
         $metas[] = new SearchHeader('status', (string)$this->getResponseStatusCode());
         return new SearchUrlHeaderCollection($metas);
 

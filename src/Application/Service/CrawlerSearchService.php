@@ -30,16 +30,16 @@ class CrawlerSearchService
 
     public function __invoke(CrawlerSearchInput $input): void
     {
+
         $rootUrl = $input->url();
         $rootDeep = $input->deep();
+
         $page = $this->pageFinder->__invoke($rootUrl, $rootDeep);
 
 
-
-
         $urls = array_merge(
-            $this->searchUrlRepository->searchInternalsUrl($rootUrl, $input->deep())->values(),
-            $this->searchUrlRepository->searchExternalsUrl($rootUrl, $input->deep())->values()
+            $this->searchUrlRepository->searchInternalsUrl($page->url(), $input->deep())->values(),
+            $this->searchUrlRepository->searchExternalsUrl($page->url(), $input->deep())->values()
         );
 
         foreach ($urls as $url) {

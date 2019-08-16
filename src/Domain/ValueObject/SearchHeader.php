@@ -7,6 +7,8 @@ class SearchHeader
     public const KEY = 'key';
     public const HEADER = 'header';
 
+    public const LAST_MODIFIED = 'last-modified';
+
     private $key;
     private $header;
 
@@ -32,6 +34,11 @@ class SearchHeader
             self::KEY => $this->key,
             self::HEADER => $this->header
         ];
+    }
+
+    public function equalsHeader(SearchHeader $otherHeader): bool
+    {
+        return $this->header() === $otherHeader->header();
     }
 
     public function __toString(): string

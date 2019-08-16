@@ -8,5 +8,5 @@ AML\Domain\ValueObject\Page:
       columnPrefix: false
   id:
     url:
-      type: string
+      type: search_url_type
       column: url

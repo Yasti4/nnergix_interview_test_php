@@ -17,13 +17,13 @@ class DoctrineInfoUrlRepository extends EntityRepository implements InfoUrlRepos
      */
     public function persist(Page $page): void
     {
-//        die(var_dump($page));
         $this->getEntityManager()->persist($page);
         $this->getEntityManager()->flush();
     }
 
     public function findUrl(SearchUrl $url): ?Page
     {
+        /** @var null|Page $page */
         $page = $this->find($url->value());
         return $page;
     }

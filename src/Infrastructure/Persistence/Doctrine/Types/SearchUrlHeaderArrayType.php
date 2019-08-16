@@ -21,13 +21,10 @@ class SearchUrlHeaderArrayType extends Type
         /** @var array $rawHeaders */
         $rawHeaders = json_decode($value, true);
 
-
-        return new SearchUrlHeaderCollection(
-            array_map(function ($rawHeader) {
+        return array_map(function ($rawHeader) {
                 $rawHeader = json_decode($rawHeader, true);
                 return new SearchHeader($rawHeader[SearchHeader::KEY], $rawHeader[SearchHeader::HEADER]);
-            }, $rawHeaders)
-        );
+            }, $rawHeaders);
     }
 
     /** @param SearchHeader[] $value */
