@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  nnergix-php:
+    build:
+      context: .
+      dockerfile: docker/local/nnergix-php/Dockerfile
+      args:
+        - "HOST_IP=${DOCKER_HOST_IP}"
+    restart: unless-stopped
+    environment:
+      PHP_IDE_CONFIG: "serverName=docker"
+    env_file:
+      - .env
+    container_name: nnergix-php
+    ports:
+      - "8081:80"
+    volumes:
+      - "./:/app:cached"
+      - "./var/run:/var/run:cached"
+      - "./docker/local/nnergix-php/rootfs/etc/apache2/sites-available/000-default.conf:/etc/apache2/sites-available/000-default.conf"
+    tty: true
+  nnergix-db:
+    build:
+      context: docker/local/nnergix-db
+    image: mysql:5.7
+    container_name: nnergix-db
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+    ports:
+      - "3300:3306"
+    volumes:
+      - "./var/log/nnergix-db:/var/log"
+      - "./var/storage/mysql:/var/lib/mysql"
+    tty: true

@@ -2,7 +2,7 @@
 
 namespace AML\Domain\ValueObject;
 
-class SeachUrlHeaderCollection extends Collection
+class SearchUrlHeaderCollection extends Collection
 {
     /** @param SearchHeader[] $values */
     public function __construct(array $values = [])
@@ -20,4 +20,5 @@ class SeachUrlHeaderCollection extends Collection
     {
         return $this->values;
     }
+
 }

@@ -1,0 +1,4 @@
+doctrine:
+  dbal:
+    types:
+      search_url_header_array_type: 'AML\Infrastructure\Persistence\Doctrine\Types\SearchUrlHeaderArrayType'

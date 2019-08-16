@@ -2,13 +2,15 @@
 
 namespace AML\Infrastructure\Domain\Repository;
 
-use AML\Domain\Repository\SearchUrlRepository;
-use AML\Domain\ValueObject\SearchUrl;
-use AML\Domain\ValueObject\SearchDeep;
-use AML\Domain\ValueObject\Page;
-use AML\Domain\ValueObject\SearchUrlCollection;
-use AML\Domain\Exception\SearchUrlNotFoundException;
 use AML\Domain\Exception\InvalidSearchUrlException;
+use AML\Domain\Exception\SearchUrlNotFoundException;
+use AML\Domain\Repository\SearchUrlRepository;
+use AML\Domain\ValueObject\Page;
+use AML\Domain\ValueObject\SearchDeep;
+use AML\Domain\ValueObject\SearchHeader;
+use AML\Domain\ValueObject\SearchUrl;
+use AML\Domain\ValueObject\SearchUrlCollection;
+use AML\Domain\ValueObject\SearchUrlHeaderCollection;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
@@ -21,16 +23,16 @@ class SymfonyCrawlerUrlRepository implements SearchUrlRepository
     private const HEADER_ALLOWED = [
         'date',
         'expires',
-        'status',
-
+        'content-type',
+        'last-modified',
+        'content-encoding'
     ];
 
     /** @var HttpClientInterface */
     private $httpClient;
-    /** @var Crawler */
+    /** @var null|Crawler */
     private $crawler;
-
-    /** @var ResponseInterface */
+    /** @var null|ResponseInterface */
     private $responseClient;
 
     public function __construct(HttpClientInterface $httpClient)
@@ -49,13 +51,10 @@ class SymfonyCrawlerUrlRepository implements SearchUrlRepository
     public function findPage(SearchUrl $url, SearchDeep $deep): Page
     {
         if (is_null($this->responseClient)) {
-            $this->getCrawler($url, $deep);
+            $this->getCrawler($url);
         }
 
-        // $page = new Page($url, new AML\Domain\ValueObject\SeachUrlHeaderCollection(
-        //     AML\Domain\ValueObject\SearchHeader()
-        // ));
-        die(var_dump($this->responseClient->getInfo()));
+        return new Page($url, $this->getHeaders());
     }
 
     /** @throws SearchUrlNotFoundException|InvalidSearchUrlException */
@@ -85,7 +84,22 @@ class SymfonyCrawlerUrlRepository implements SearchUrlRepository
         return new SearchUrlCollection($urls);
     }
 
-    /** @throws SearchUrlNotFoundException */
+    private function getHeaders(): SearchUrlHeaderCollection
+    {
+        $headers = $this->getResponseHeaders();
+        $metas = array_map(function ($header) use ($headers) {
+            if (array_key_exists($header, $headers)) {
+                return new SearchHeader($header, $headers[$header][0]);
+            }
+        },
+            self::HEADER_ALLOWED
+        );
+        $metas[] = new SearchHeader('status', (string)$this->getResponseStatusCode());
+        return new SearchUrlHeaderCollection($metas);
+
+    }
+
+    /** @throws SearchUrlNotFoundException|InvalidSearchUrlException */
     private function getCrawler(SearchUrl $url): Crawler
     {
         if ($this->crawler) {
@@ -99,18 +113,32 @@ class SymfonyCrawlerUrlRepository implements SearchUrlRepository
         try {
             $response = $this->httpClient->request('GET', $url->value());
             $this->responseClient = $response;
+            if ($response->getStatusCode() !== 200) {
+                throw new SearchUrlNotFoundException($url->value());
+            }
         } catch (\Throwable $th) {
             throw new SearchUrlNotFoundException($url->value());
         }
 
-        if ($response->getStatusCode() !== 200) {
-            throw new SearchUrlNotFoundException($url->value());
-        }
 
         return new Crawler($response->getContent(), $url->value());
     }
+
+    private function getResponseHeaders(): array
+    {
+        try {
+            return $this->responseClient ? $this->responseClient->getHeaders() : [];
+        } catch (\Throwable $e) {
+            return [];
+        }
+    }
+
+    private function getResponseStatusCode(): int
+    {
+        try {
+            return $this->responseClient ? $this->responseClient->getStatusCode() : 0;
+        } catch (\Throwable $e) {
+            return 0;
+        }
+    }
 }
-
-
-// die(var_dump($response->getHeaders()));
-        // $metas = $crawler->filter('head meta');

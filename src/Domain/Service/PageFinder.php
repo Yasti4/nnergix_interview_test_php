@@ -4,6 +4,7 @@ namespace AML\Domain\Service;
 
 use AML\Domain\Repository\InfoUrlRepository;
 use AML\Domain\Repository\SearchUrlRepository;
+use AML\Domain\ValueObject\Page;
 use AML\Domain\ValueObject\SearchUrl;
 use AML\Domain\ValueObject\SearchDeep;
 
@@ -25,10 +26,9 @@ class PageFinder
     public function __invoke(SearchUrl $searchUrl, SearchDeep $deep): Page
     {
         $page = $this->infoUrlRepository->findUrl($searchUrl);
-
         if (is_null($page)) {
-            $page = $this->searchUrlRepository->findPage($searchUrl, $deep);
 
+            $page = $this->searchUrlRepository->findPage($searchUrl, $deep);
             $this->infoUrlRepository->persist($page);
         }
 

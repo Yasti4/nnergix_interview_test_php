@@ -1,0 +1,12 @@
+AML\Domain\ValueObject\Page:
+  type: entity
+  repositoryClass: AML\Infrastructure\Domain\Repository\DoctrineInfoUrlRepository
+  table: pages
+  embedded:
+    headers:
+      class: AML\Domain\ValueObject\SearchUrlHeaderCollection
+      columnPrefix: false
+  id:
+    url:
+      type: string
+      column: url

@@ -32,10 +32,13 @@ class CommandCrawlerSearch extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $args = $input->getArguments();
+
         $this->crawlerSearchService->__invoke(new CrawlerSearchInput(
-            $input->getArgument('url'),
-            $input->getArgument('deep')
+            (string)$args['url'] ?? '',
+            (int)$args['deep'] ?? -1
         ));
+
         return 0;
     }
 }

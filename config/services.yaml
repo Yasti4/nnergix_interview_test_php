@@ -21,13 +21,9 @@ services:
         arguments: ['@Symfony\Contracts\HttpClient\HttpClientInterface']
 
     AML\Domain\Repository\InfoUrlRepository:
-        class: AML\Infrastructure\Domain\Repository\PostgressInfoUrlRepository
-
-    AML\Domain\Service\PageFinder:
-        arguments:
-            - '@AML\Domain\Repository\InfoUrlRepository'
-            - '@AML\Domain\Repository\SearchUrlRepository'
-
+        class: AML\Infrastructure\Domain\Repository\DoctrineInfoUrlRepository
+        factory: ["@doctrine", getRepository]
+        arguments: ["DomainModel:Page"]
 
     # Third party
 

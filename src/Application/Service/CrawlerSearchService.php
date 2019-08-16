@@ -16,6 +16,8 @@ class CrawlerSearchService
     // TODO: Poner los que faltan!
     /** @var PageFinder */
     private $pageFinder;
+    /** @var InfoUrlRepository */
+    private $infoUrlRepository;
 
     public function __construct(
         InfoUrlRepository $infoUrlRepository,

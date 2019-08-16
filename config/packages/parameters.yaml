@@ -1,0 +1,3 @@
+parameters:
+  database.host: '%env(MYSQL_HOST)%'
+  database.port: '%env(MYSQL_PORT)%'

@@ -1,0 +1,6 @@
+AML\Domain\ValueObject\SearchUrlHeaderCollection:
+  type: embeddable
+  fields:
+    values:
+      type: search_url_header_array_type
+      column: headers

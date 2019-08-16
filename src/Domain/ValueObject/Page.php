@@ -8,11 +8,12 @@ class Page
     public const HEADER = 'header';
 
     private $url;
+    private $headers;
 
-    public function __construct(SearchUrl $url, SeachUrlHeaderCollection $header)
+    public function __construct(SearchUrl $url, SearchUrlHeaderCollection $headers)
     {
         $this->url = $url;
-        $this->header = $header;
+        $this->headers = $headers;
     }
 
     public function url(): SearchUrl
@@ -20,21 +21,21 @@ class Page
         return $this->url;
     }
 
-    public function header(): SeachUrlHeaderCollection
+    public function headers(): SearchUrlHeaderCollection
     {
-        return $this->header;
+        return $this->headers;
     }
 
     public function value(): array
     {
         return [
             self::URL => $this->url,
-            self::HEADER => $this->header
+            self::HEADER => $this->headers
         ];
     }
 
-    public function __toString(): int
+    public function __toString(): string
     {
-        return $this->value();
+        return ''.json_encode($this->value());
     }
 }

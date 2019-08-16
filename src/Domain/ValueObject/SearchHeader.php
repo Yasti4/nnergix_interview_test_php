@@ -34,8 +34,8 @@ class SearchHeader
         ];
     }
 
-    public function __toString(): array
+    public function __toString(): string
     {
-        return $this->value();
+        return $this->key();
     }
 }

@@ -1,0 +1,22 @@
+doctrine:
+    dbal:
+      default_connection: default
+      connections:
+        default:
+          driver:   pdo_mysql
+          host:     '%database.host%'
+          port:     '%database.port%'
+          dbname:   '%env(MYSQL_DATABASE)%'
+          user:     '%env(MYSQL_USER)%'
+          password: '%env(MYSQL_PASSWORD)%'
+          charset:  UTF8
+          server_version: '5.7'
+    orm:
+      auto_mapping: false
+      mappings:
+        DomainModel:
+          type:      yml
+          dir:       "%kernel.root_dir%/Infrastructure/Persistence/Doctrine/ValueObject"
+          prefix:    AML\Domain\ValueObject
+          alias:     DomainModel
+          is_bundle: false
