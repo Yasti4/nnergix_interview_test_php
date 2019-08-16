@@ -2,49 +2,58 @@
 
 namespace AML\Application\Service;
 
-use Psr\Log\LoggerInterface;
-use AML\Domain\Repository\SearchUrlRepository;
+use AML\Application\Bus\CommandBus;
+use AML\Application\Bus\ProcessPageCommand;
+use AML\Domain\Exception\InvalidSearchUrlException;
+use AML\Domain\Exception\SearchUrlNotFoundException;
 use AML\Domain\Repository\InfoUrlRepository;
-use AML\Domain\Service\PageFinder;
+use AML\Domain\Repository\SearchUrlRepository;
+use AML\Domain\Service\ProcessPage;
 
 class CrawlerSearchService
 {
-    // /** @var InfoUrlRepository */
-    // private $infoUrlRepository;
-    /** @var SearchUrlRepository */
-    private $searchUrlRepository;
-    // TODO: Poner los que faltan!
-    /** @var PageFinder */
-    private $pageFinder;
     /** @var InfoUrlRepository */
     private $infoUrlRepository;
+    /** @var SearchUrlRepository */
+    private $searchUrlRepository;
+    /** @var CommandBus */
+    private $bus;
+
 
     public function __construct(
         InfoUrlRepository $infoUrlRepository,
-        SearchUrlRepository $searchUrlRepository
-        ) {
+        SearchUrlRepository $searchUrlRepository,
+        CommandBus $bus
+    )
+    {
         $this->searchUrlRepository = $searchUrlRepository;
         $this->infoUrlRepository = $infoUrlRepository;
-        $this->pageFinder = new PageFinder($infoUrlRepository, $searchUrlRepository);
+        $this->bus = $bus;
+
     }
 
+    /** @throws InvalidSearchUrlException|SearchUrlNotFoundException */
     public function __invoke(CrawlerSearchInput $input): void
     {
 
         $rootUrl = $input->url();
         $rootDeep = $input->deep();
 
-        $page = $this->pageFinder->__invoke($rootUrl, $rootDeep);
-
+        $processPage = (new ProcessPage(
+            $this->infoUrlRepository,
+            $this->searchUrlRepository
+        ))->__invoke($rootUrl, $rootDeep);
 
         $urls = array_merge(
-            $this->searchUrlRepository->searchInternalsUrl($page->url(), $input->deep())->values(),
-            $this->searchUrlRepository->searchExternalsUrl($page->url(), $input->deep())->values()
+            $processPage->internalLinks()->values(),
+            $processPage->externalLinks()->values()
         );
 
-        foreach ($urls as $url) {
-            if (!$rootUrl->equals($url)) {
-                echo $url->__toString().PHP_EOL;
+        for ($i = 0; $i < count($urls) && ($rootDeep->value() !== 0); $i++) {
+            echo $i . ' de ' . $urls[$i] . PHP_EOL;
+            if (!$rootDeep->equals($urls[$i])) {
+                $cmd = new ProcessPageCommand($urls[$i]->value(), $rootDeep->value());
+                $this->bus->handle($cmd);
             }
         }
     }

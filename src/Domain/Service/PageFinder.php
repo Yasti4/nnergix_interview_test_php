@@ -2,6 +2,8 @@
 
 namespace AML\Domain\Service;
 
+use AML\Domain\Exception\InvalidSearchUrlException;
+use AML\Domain\Exception\SearchUrlNotFoundException;
 use AML\Domain\Repository\InfoUrlRepository;
 use AML\Domain\Repository\SearchUrlRepository;
 use AML\Domain\ValueObject\Page;
@@ -25,6 +27,7 @@ class PageFinder
         $this->searchUrlRepository = $searchUrlRepository;
     }
 
+    /** @throws InvalidSearchUrlException|SearchUrlNotFoundException */
     public function __invoke(SearchUrl $searchUrl, SearchDeep $deep): Page
     {
         $page = $this->infoUrlRepository->findUrl($searchUrl);

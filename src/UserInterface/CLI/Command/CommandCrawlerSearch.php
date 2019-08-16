@@ -34,7 +34,7 @@ class CommandCrawlerSearch extends Command
     {
         $args = $input->getArguments();
 
-        $this->crawlerSearchService->__invoke(new CrawlerSearchInput(
+        $result = $this->crawlerSearchService->__invoke(new CrawlerSearchInput(
             (string)$args['url'] ?? '',
             (int)$args['deep'] ?? -1
         ));

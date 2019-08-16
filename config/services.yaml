@@ -14,6 +14,14 @@ services:
         resource: '../src/Application/Service'
         exclude: '*Input.php'
 
+    AML\Application\Bus\CommandBus:
+      class: '@simple_bus.command_bus'
+
+    AML\Application\Bus\MyHandler:
+      class: AML\Application\Bus\MyHandler
+      tags:
+        - { name: command_handler, handles: MediaManager\Application\Bus\ProcessPageCommand }
+
     # Domain layer
 
     AML\Domain\Repository\SearchUrlRepository:
