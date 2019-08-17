@@ -2,6 +2,9 @@
 
 namespace AML\UserInterface\CLI\Command;
 
+use AML\Application\Bus\CommandBus;
+use AML\Infrastructure\Application\Command\CommandConsumer;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
@@ -10,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use AML\Application\Service\CrawlerSearchService;
 use AML\Application\Service\CrawlerSearchInput;
 
-class CommandWorker extends Command
+class QueryCommand extends Command
 {
     /** @var CommandConsumer */
     private $commandConsumer;
@@ -38,5 +41,6 @@ class CommandWorker extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         // doy datos
+
     }
 }

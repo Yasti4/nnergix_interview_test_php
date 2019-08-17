@@ -96,6 +96,9 @@
     "myclabs/deep-copy": {
         "version": "1.9.3"
     },
+    "myclabs/php-enum": {
+        "version": "1.7.1"
+    },
     "nette/bootstrap": {
         "version": "v3.0.0"
     },
@@ -125,6 +128,9 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.2.3"
+    },
+    "pda/pheanstalk": {
+        "version": "v4.0.0"
     },
     "phar-io/manifest": {
         "version": "1.0.3"
@@ -295,6 +301,9 @@
             ".env"
         ]
     },
+    "symfony/form": {
+        "version": "v4.3.3"
+    },
     "symfony/framework-bundle": {
         "version": "4.2",
         "recipe": {
@@ -329,6 +338,9 @@
     "symfony/inflector": {
         "version": "v4.3.3"
     },
+    "symfony/intl": {
+        "version": "v4.3.3"
+    },
     "symfony/mime": {
         "version": "v4.3.3"
     },
@@ -349,6 +361,9 @@
             "config/packages/test/monolog.yaml"
         ]
     },
+    "symfony/options-resolver": {
+        "version": "v4.3.3"
+    },
     "symfony/orm-pack": {
         "version": "v1.0.6"
     },
@@ -367,6 +382,9 @@
             "phpunit.xml.dist",
             "tests/.gitignore"
         ]
+    },
+    "symfony/polyfill-intl-icu": {
+        "version": "v1.12.0"
     },
     "symfony/polyfill-intl-idn": {
         "version": "v1.12.0"
@@ -406,6 +424,22 @@
     },
     "symfony/stopwatch": {
         "version": "v4.3.3"
+    },
+    "symfony/translation-contracts": {
+        "version": "v1.1.5"
+    },
+    "symfony/validator": {
+        "version": "4.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.3",
+            "ref": "d902da3e4952f18d3bf05aab29512eb61cabd869"
+        },
+        "files": [
+            "config/packages/test/validator.yaml",
+            "config/packages/validator.yaml"
+        ]
     },
     "symfony/var-dumper": {
         "version": "v4.3.3"

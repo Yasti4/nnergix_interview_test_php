@@ -2,18 +2,15 @@
 
 declare(strict_types=1);
 
+namespace AML\Infrastructure\Application\Command;
 
-namespace AML\Application\Bus;
-
-
-use AML\Infrastructure\Application\Command\CommandSerializer;
+use AML\Application\Bus\Command;
 use AML\Infrastructure\Queue\QueueService;
 
-class MyHandler implements CommandHandler
+class CommandConsumer
 {
     /** @var QueueService */
     private $queueService;
-
     /** @var CommandSerializer */
     private $commandSerializer;
 
@@ -23,13 +20,10 @@ class MyHandler implements CommandHandler
         $this->commandSerializer = $commandSerializer;
     }
 
-    /** @param ProcessPageCommand $command */
-    public function handle(Command $command): void
+    public function consume(): Command
     {
-        $this->queueService->enqueue(
-            $this->commandSerializer->serialize($command),
-            [
-            ]
+        return $this->commandSerializer->deserialize(
+            $this->queueService->dequeue()
         );
     }
 }

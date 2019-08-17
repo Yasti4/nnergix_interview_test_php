@@ -8,14 +8,31 @@ services:
     AML\UserInterface\CLI\Command\:
         resource: '../src/UserInterface/CLI/Command'
 
+    # Infrastructure
+
+    AML\Infrastructure\Application\Command\CommandSerializer:
+      class: AML\Infrastructure\Application\Command\SymfonyJSONCommandSerializer
+
+    AML\Infrastructure\Application\Command\SymfonyJSONCommandSerializer:
+      public: true
+      class: AML\Infrastructure\Application\Command\SymfonyJSONCommandSerializer
+
+    AML\Infrastructure\Application\Command\CommandConsumer:
+      class: AML\Infrastructure\Application\Command\CommandConsumer
+
+    AML\Application\Bus\CommandBus:
+      class: AML\Infrastructure\Application\Command\SimpleBusSyncCommandBus
+      arguments: ['@simple_bus.command_bus']
+
+    AML\Infrastructure\Queue\QueueService:
+      class: AML\Infrastructure\Queue\Beanstalkd\BeanstalkdQueue
+      arguments: ['%beanstalkd.host%', '%beanstalkd.port%', '%beanstalkd.timeout%', '%beanstalkd.tube.async-process-event%']
+
     # Application layer
 
     AML\Application\Service\:
         resource: '../src/Application/Service'
         exclude: '*Input.php'
-
-    AML\Application\Bus\CommandBus:
-      class: '@simple_bus.command_bus'
 
     AML\Application\Bus\MyHandler:
       class: AML\Application\Bus\MyHandler

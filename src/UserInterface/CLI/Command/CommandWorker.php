@@ -2,13 +2,12 @@
 
 namespace AML\UserInterface\CLI\Command;
 
+use AML\Application\Bus\CommandBus;
+use AML\Infrastructure\Application\Command\CommandConsumer;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
-
-use AML\Application\Service\CrawlerSearchService;
-use AML\Application\Service\CrawlerSearchInput;
 
 class CommandWorker extends Command
 {
@@ -41,11 +40,10 @@ class CommandWorker extends Command
             try {
                 $command = $this->commandConsumer->consume();
 
-                $this->commandBus->dispatch($command);
+                $this->commandBus->handle($command);
 
-                $this->commandConsumer->markAsConsumed();
-            } catch (Exception $e) {
-                $this->commandConsumer->markAsFailed();
+            } catch (\Exception $e) {
+                var_dump($e->getMessage()); //TODO: quitar
             }
 
             return 0;
@@ -54,6 +52,5 @@ class CommandWorker extends Command
 
             return 1;
         }
-    }  return 0;
     }
 }

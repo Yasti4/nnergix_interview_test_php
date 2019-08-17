@@ -3,17 +3,15 @@
 namespace AML\Infrastructure\Domain\Repository;
 
 use AML\Domain\Repository\InfoUrlRepository;
-use AML\Domain\ValueObject\Page;
-use AML\Domain\ValueObject\SearchUrl;
-use Doctrine\ORM\EntityRepository;
-
+use AML\Domain\ValueObject\{Page, SearchUrl};
+use Doctrine\ORM\{EntityRepository, OptimisticLockException, ORMException};
 
 class DoctrineInfoUrlRepository extends EntityRepository implements InfoUrlRepository
 {
 
     /**
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function persist(Page $page): void
     {

@@ -8,7 +8,6 @@ namespace AML\Application\Listener;
 
 use AML\Application\Bus\Command;
 use AML\Application\Bus\ProcessPageCommand;
-use AML\Application\Service\Z;
 
 class CommandListener implements ListenerHandler
 {

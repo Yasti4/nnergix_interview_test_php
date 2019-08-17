@@ -1,3 +1,10 @@
 parameters:
+  env: '%env(APP_ENV)%'
+
   database.host: '%env(MYSQL_HOST)%'
   database.port: '%env(MYSQL_PORT)%'
+
+  beanstalkd.host: '%env(BEANSTALKD_HOST)%'
+  beanstalkd.port: 11300
+  beanstalkd.tube.async-process-event: nnergix-crawler
+  beanstalkd.timeout: 300
