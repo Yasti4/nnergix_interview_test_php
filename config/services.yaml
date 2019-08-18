@@ -48,6 +48,8 @@ services:
 
     AML\Application\Command\SearchUrlChangedHandler:
       class: AML\Application\Command\SearchUrlChangedHandler
+      arguments:
+        - '@AML\Domain\Repository\InfoUrlChangeRepository'
       tags:
         - { name: command_handler, handles: AML\Application\Command\SearchUrlChangedCommand }
 
@@ -61,6 +63,11 @@ services:
         class: AML\Infrastructure\Domain\Repository\DoctrineInfoUrlRepository
         factory: ["@doctrine", getRepository]
         arguments: ["DomainModel:Page"]
+
+    AML\Domain\Repository\InfoUrlChangeRepository:
+      class: AML\Infrastructure\Domain\Repository\DoctrineEventUrlChangedRepository
+      factory: ["@doctrine", getRepository]
+      arguments: ["DomainModel:EventUrlChanged"]
 
     AML\Domain\Event\DomainEventPublisher:
       public: true

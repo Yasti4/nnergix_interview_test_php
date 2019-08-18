@@ -1,0 +1,14 @@
+AML\Domain\ValueObject\EventUrlChanged:
+  type: entity
+  repositoryClass: AML\Infrastructure\Domain\Repository\DoctrineEventUrlChangedRepository
+  table: event_url_changed
+  id:
+    url:
+      type: search_url_type
+      column: url
+  fields:
+    occurredOn:
+      type: string
+      lenght: 100
+      nullable: false
+      column: occurred_on

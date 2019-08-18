@@ -38,7 +38,7 @@ class PageFinder
             $tempPage = $this->searchUrlRepository->findPage($searchUrl, $deep);
 
             $isChangePage = $this->checkHeaderIfPageChanged($page, $tempPage);
-            $isChangePage = true; // TODO: quitar
+            $isChangePage = true;
             if ($isChangePage) {
 
                 DomainEventPublisher::instance()->publish(new SearchUrlChangedCreated($tempPage->url()->value()));

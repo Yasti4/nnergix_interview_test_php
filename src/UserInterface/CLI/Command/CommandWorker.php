@@ -54,7 +54,7 @@ class CommandWorker extends Command
 
             return 0;
         } catch (\Throwable $e) {
-            $this->logger->error('Unknown error while consuming and/or dispatching a command.', [$e]);
+            $this->logger->error('Unknown error while consuming and/or dispatching a command.', [$e->getMessage()]);
 
             return 1;
         }
