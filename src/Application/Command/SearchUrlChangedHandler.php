@@ -25,7 +25,7 @@ class SearchUrlChangedHandler implements CommandHandler
     /** @param SearchUrlChangedCommand $command
      * @throws InvalidSearchUrlException
      */
-    public function handle(Command $command): void
+    public function handle(Command $command, array $options = []): void
     {
         $this->infoUrlChangeRepository->persist(
             new EventUrlChanged(

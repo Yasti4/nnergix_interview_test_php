@@ -8,5 +8,5 @@ namespace AML\Application\Bus;
 
 interface CommandExecution
 {
-    public function publish(Command $command): void;
+    public function publish(Command $command, array $options = []): void;
 }

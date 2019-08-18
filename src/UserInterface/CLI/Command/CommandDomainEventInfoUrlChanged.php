@@ -38,8 +38,7 @@ class CommandDomainEventInfoUrlChanged extends Command
         $urlsChanged = $this->infoUrlChangedService->__invoke(
             new InfoUrlChangedInput()
         );
-
-        if (empty($urlsChanged)) {
+        if (empty($urlsChanged->count())) {
             $output->writeln('No information available. Try another time');
             return 1;
         }

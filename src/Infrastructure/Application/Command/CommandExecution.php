@@ -23,10 +23,11 @@ class CommandExecution implements CommandExecutionI
         $this->commandSerializer = $commandSerializer;
     }
 
-    public function publish(Command $command): void
+    public function publish(Command $command, array $options = []): void
     {
         $this->queueService->enqueue(
-            $this->commandSerializer->serialize($command)
+            $this->commandSerializer->serialize($command),
+            $options
         );
     }
 }

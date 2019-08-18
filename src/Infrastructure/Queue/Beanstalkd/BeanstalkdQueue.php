@@ -49,7 +49,7 @@ class BeanstalkdQueue implements QueueService
         $this->useTubeIfExists($options);
 
 
-        if ($this->hasBeanstalkdJob()) { // TODO: mirar funcion
+        if ($this->hasBeanstalkdJob()) {
             throw new JobAlreadyExistsException($this->jobs[$this->tube]->getId());
         }
 

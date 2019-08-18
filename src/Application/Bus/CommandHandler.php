@@ -8,5 +8,5 @@ namespace AML\Application\Bus;
 
 interface CommandHandler
 {
-    public function handle(Command $command): void;
+    public function handle(Command $command, array $options = []): void;
 }

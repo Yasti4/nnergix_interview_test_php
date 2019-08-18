@@ -53,6 +53,12 @@ services:
       tags:
         - { name: command_handler, handles: AML\Application\Command\SearchUrlChangedCommand }
 
+    AML\Application\Command\ProcessPageHandler:
+      class: AML\Application\Command\ProcessPageHandler
+      arguments:
+        - '@AML\Application\Bus\CommandExecution'
+      tags:
+        - { name: command_handler,  handles:  AML\Application\Command\ProcessPageCommand }
 
     # Domain layer
 

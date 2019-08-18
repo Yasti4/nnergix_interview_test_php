@@ -15,11 +15,13 @@ class SearchUrlChangedCommand implements Command
     /** @var string */
     private $occurredOn;
 
-    /** @throws InvalidSearchUrlException */
+    /** @throws InvalidSearchUrlException
+     * @throws \Exception
+     */
     public function __construct(string $url, string $occurredOn)
     {
         $this->url = new SearchUrl($url);
-        $this->occurredOn = (new \DateTimeImmutable())->format('Y-m-d H:i:s');
+        $this->occurredOn = (new \DateTimeImmutable($occurredOn))->format('Y-m-d H:i:s');
     }
 
     public function getUrl(): string //TODO: class o simple value?

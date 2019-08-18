@@ -5,6 +5,10 @@ namespace AML\UserInterface\CLI\Command;
 use AML\Domain\Exception\InvalidSearchDeepException;
 use AML\Domain\Exception\InvalidSearchUrlException;
 use AML\Domain\Exception\SearchUrlNotFoundException;
+use AML\Domain\ValueObject\SearchHeader;
+use AML\Domain\ValueObject\SearchUrl;
+use AML\Domain\ValueObject\SearchUrlCollection;
+use AML\Domain\ValueObject\SearchUrlHeaderCollection;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
@@ -38,14 +42,44 @@ class CommandCrawlerSearch extends Command
         $args = $input->getArguments();
 
         try {
-            $this->crawlerSearchService->__invoke(new CrawlerSearchInput(
+            $processPage = $this->crawlerSearchService->__invoke(new CrawlerSearchInput(
                 (string)$args['url'] ?? '',
                 (int)$args['deep'] ?? -1
             ));
+
+            $output->writeln('Data found:');
+            $output->writeln('Url Search: ' . $processPage->page()->url()->value());
+
+            $this->printHeaders($processPage->page()->headers(), $output);
+            $this->printLinks('Internal Links:', $processPage->internalLinks(), $output);
+            $this->printLinks('External Links:', $processPage->externalLinks(), $output);
+
         } catch (InvalidSearchUrlException|InvalidSearchDeepException|SearchUrlNotFoundException $e) {
             var_dump($e->getMessage());
         }
 
         return 0;
+    }
+
+    public function printLinks(string $mensage, SearchUrlCollection $internalLinks, OutputInterface $output)
+    {
+        if ($internalLinks) {
+            $output->writeln($mensage);
+            /** @var SearchUrl $internalLink */
+            foreach ($internalLinks as $internalLink) {
+                $output->writeln($internalLink->value());
+            }
+        }
+    }
+
+    public function printHeaders(SearchUrlHeaderCollection $headers, OutputInterface $output)
+    {
+        if ($headers) {
+            $output->writeln('Headers:');
+            /** @var SearchHeader $header */
+            foreach ($headers as $header) {
+                $output->writeln('Header: ' . $header->key() . ' => ' . $header->header());
+            }
+        }
     }
 }

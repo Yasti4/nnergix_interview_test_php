@@ -52,11 +52,11 @@ final class DomainEventPublisher
         unset($this->listeners[$id]);
     }
 
-    public function publish(DomainEvent $event): void
+    public function publish(DomainEvent $event, array $options = []): void
     {
         foreach ($this->listeners as $listener) {
             if ($listener->isSubscribedTo($event)) {
-                $listener->handle($event);
+                $listener->handle($event, $options);
             }
         }
     }

@@ -3,13 +3,14 @@
 namespace AML\Application\Service;
 
 use AML\Application\Bus\CommandBus;
-use AML\Application\Bus\ProcessPageCommand;
+use AML\Application\Command\ProcessPageCommand;
 use AML\Domain\Exception\InvalidSearchDeepException;
 use AML\Domain\Exception\InvalidSearchUrlException;
 use AML\Domain\Exception\SearchUrlNotFoundException;
 use AML\Domain\Repository\InfoUrlRepository;
 use AML\Domain\Repository\SearchUrlRepository;
 use AML\Domain\Service\ProcessPage;
+use AML\Domain\ValueObject\PageProcessed;
 
 class CrawlerSearchService
 {
@@ -38,7 +39,7 @@ class CrawlerSearchService
      * @throws InvalidSearchDeepException
      * @throws SearchUrlNotFoundException
      */
-    public function __invoke(CrawlerSearchInput $input): void
+    public function __invoke(CrawlerSearchInput $input): PageProcessed
     {
 
         $rootUrl = $input->url();
@@ -49,18 +50,18 @@ class CrawlerSearchService
             $this->searchUrlRepository
         ))->__invoke($rootUrl, $rootDeep);
 
-//        $urls = array_merge(
-//            $processPage->internalLinks()->values(),
-//            $processPage->externalLinks()->values()
-//        );
+        $urls = array_merge(
+            $processPage->internalLinks()->values(),
+            $processPage->externalLinks()->values()
+        );
 
-
-//        for ($i = 0; $i < count($urls) && ($rootDeep->value() !== 0); $i++) {
-//            if (!$rootUrl->equals($urls[$i])) {
+        for ($i = 0; $i < count($urls) && ($rootDeep->value() > 0); $i++) {
+            if (!$rootUrl->equals($urls[$i])) {
 //                echo $urls[$i]->value().PHP_EOL;
-//                $cmd = new ProcessPageCommand($urls[$i]->value(), $rootDeep->value());
-//                $this->bus->handle($cmd);
-//            }
-//        }
+                $cmd = new ProcessPageCommand($urls[$i]->value(), $rootDeep->value() - 1);
+                $this->bus->handle($cmd);
+            }
+        }
+        return $processPage;
     }
 }

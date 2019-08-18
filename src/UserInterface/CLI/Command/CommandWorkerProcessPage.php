@@ -2,7 +2,9 @@
 
 namespace AML\UserInterface\CLI\Command;
 
-use AML\Application\Bus\CommandBus;
+use AML\Application\Command\ProcessPageCommand;
+use AML\Application\Service\CrawlerSearchInput;
+use AML\Application\Service\CrawlerSearchService;
 use AML\Infrastructure\Application\Command\CommandConsumer;
 use AML\Infrastructure\Queue\QueueOption;
 use Psr\Log\LoggerInterface;
@@ -10,28 +12,32 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CommandWorker extends Command
+class CommandWorkerProcessPage extends Command
 {
     /** @var CommandConsumer */
     private $commandConsumer;
-    /** @var CommandBus */
-    private $commandBus;
     /** @var LoggerInterface */
     private $logger;
+    /** @var CrawlerSearchService */
+    private $crawlerSearchService;
 
-    public function __construct(CommandConsumer $commandConsumer, CommandBus $commandBus, LoggerInterface $logger)
+    public function __construct(
+        CommandConsumer $commandConsumer,
+        CrawlerSearchService $crawlerSearchService,
+        LoggerInterface $logger
+    )
     {
         parent::__construct();
 
         $this->commandConsumer = $commandConsumer;
-        $this->commandBus = $commandBus;
         $this->logger = $logger;
+        $this->crawlerSearchService = $crawlerSearchService;
     }
 
     protected function configure(): void
     {
         $this
-            ->setName('worker:async-domain-events')
+            ->setName('worker:async-process-page')
             ->setDescription('Execute scheduled beanstalkd jobs');
     }
 
@@ -39,16 +45,22 @@ class CommandWorker extends Command
     {
         try {
             try {
+                /** @var ProcessPageCommand $command */
                 $command = $this->commandConsumer->consume(
-                    [QueueOption::QUEUE_NAME()->getKey() => 'nnergix-crawler' ]
+                    [QueueOption::QUEUE_NAME()->getKey() => 'nnergix-process-page']
                 );
 
-                $this->commandBus->handle($command);
-                
+                $processPage = $this->crawlerSearchService->__invoke(new CrawlerSearchInput(
+                    $command->url()->value() ?? '',
+                    $command->deep()->value() ?? -1
+                ));
+
+//                $this->commandBus->handle($command);
+
                 $this->commandConsumer->markAsConsumed();
             } catch (\Exception $e) {
+                var_dump($e->getMessage());
                 $this->commandConsumer->markAsFailed();
-                var_dump($e->getMessage()); //TODO: quitar
             }
 
             return 0;
