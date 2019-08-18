@@ -1,6 +1,6 @@
 AML\Domain\ValueObject\EventUrlChanged:
   type: entity
-  repositoryClass: AML\Infrastructure\Domain\Repository\DoctrineEventUrlChangedRepository
+  repositoryClass: AML\Infrastructure\Domain\Repository\DoctrineInfoUrlChangeRepository
   table: event_url_changed
   id:
     url:

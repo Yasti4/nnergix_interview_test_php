@@ -2,10 +2,8 @@
 
 namespace AML\Domain\Repository;
 
-use AML\Domain\ValueObject\SearchUrl;
-use AML\Domain\ValueObject\SearchUrlCollection;
-use AML\Domain\ValueObject\SearchUrlHeaderCollection;
 use AML\Domain\ValueObject\Page;
+use AML\Domain\ValueObject\SearchUrl;
 
 interface InfoUrlRepository
 {

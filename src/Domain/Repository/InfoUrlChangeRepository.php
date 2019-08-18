@@ -2,14 +2,13 @@
 
 namespace AML\Domain\Repository;
 
-use AML\Domain\ValueObject\SearchUrl;
-use AML\Domain\ValueObject\SearchUrlCollection;
-use AML\Domain\ValueObject\SearchUrlHeaderCollection;
-use AML\Domain\ValueObject\Page;
+use AML\Application\Service\InfoUrlChangedInput;
+use AML\Domain\ValueObject\EventUrlChanged;
 
 interface InfoUrlChangeRepository
 {
-    public function persist(array $urlChange): void; // TODO: Change
-    
-    public function getAll(): array ; // TODO: Change
+    public function persist(EventUrlChanged $eventUrlChange): void;
+
+    /** @return  EventUrlChanged[]*/
+    public function getAll(InfoUrlChangedInput $changedInput): array;
 }

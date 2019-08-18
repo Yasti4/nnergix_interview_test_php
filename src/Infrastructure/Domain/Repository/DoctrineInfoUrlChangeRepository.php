@@ -2,9 +2,12 @@
 
 namespace AML\Infrastructure\Domain\Repository;
 
+use AML\Application\Service\InfoUrlChangedInput;
 use AML\Domain\Repository\InfoUrlChangeRepository;
-use AML\Domain\ValueObject\{Page, SearchUrl};
+use AML\Domain\ValueObject\{EventUrlChanged, Page, SearchUrl};
 use Doctrine\ORM\{EntityRepository, OptimisticLockException, ORMException};
+use AML\Domain\ValueObject\EventUrlChangedCollection;
+
 
 class DoctrineInfoUrlChangeRepository extends EntityRepository implements InfoUrlChangeRepository
 {
@@ -13,9 +16,9 @@ class DoctrineInfoUrlChangeRepository extends EntityRepository implements InfoUr
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function persist(array $urlChange): void // TODO: Change
+    public function persist(EventUrlChanged $eventUrlChange): void
     {
-        $this->getEntityManager()->persist($urlChange);
+        $this->getEntityManager()->persist($eventUrlChange);
         $this->getEntityManager()->flush();
     }
 
@@ -26,10 +29,9 @@ class DoctrineInfoUrlChangeRepository extends EntityRepository implements InfoUr
         return $page;
     }
 
-
-    public function getAll(): array
+    /** @return  EventUrlChanged[]*/
+    public function getAll(InfoUrlChangedInput $changedInput): array
     {
-        $urlChanged = $this->findAll();
-        return $urlChanged; // TODO: Change
+        return $this->findAll();
     }
 }

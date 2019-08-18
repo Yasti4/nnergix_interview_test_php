@@ -53,6 +53,7 @@ services:
       tags:
         - { name: command_handler, handles: AML\Application\Command\SearchUrlChangedCommand }
 
+
     # Domain layer
 
     AML\Domain\Repository\SearchUrlRepository:
@@ -65,7 +66,7 @@ services:
         arguments: ["DomainModel:Page"]
 
     AML\Domain\Repository\InfoUrlChangeRepository:
-      class: AML\Infrastructure\Domain\Repository\DoctrineEventUrlChangedRepository
+      class: AML\Infrastructure\Domain\Repository\DoctrineInfoUrlChangeRepository
       factory: ["@doctrine", getRepository]
       arguments: ["DomainModel:EventUrlChanged"]
 

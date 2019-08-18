@@ -42,11 +42,10 @@ class CommandWorker extends Command
                 $command = $this->commandConsumer->consume(
                     [QueueOption::QUEUE_NAME()->getKey() => 'nnergix-crawler' ]
                 );
+
                 $this->commandBus->handle($command);
+                
                 $this->commandConsumer->markAsConsumed();
-
-
-
             } catch (\Exception $e) {
                 $this->commandConsumer->markAsFailed();
                 var_dump($e->getMessage()); //TODO: quitar

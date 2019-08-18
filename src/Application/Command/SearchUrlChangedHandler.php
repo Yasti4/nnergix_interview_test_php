@@ -8,18 +8,18 @@ namespace AML\Application\Command;
 use AML\Application\Bus\Command;
 use AML\Application\Bus\CommandHandler;
 use AML\Domain\Exception\InvalidSearchUrlException;
-use AML\Domain\Repository\EventUrlChangedRepository;
+use AML\Domain\Repository\InfoUrlChangeRepository;
 use AML\Domain\ValueObject\EventUrlChanged;
 use AML\Domain\ValueObject\SearchUrl;
 
 class SearchUrlChangedHandler implements CommandHandler
 {
-    /** @var EventUrlChangedRepository */
-    private $eventUrlChangedRepository;
+    /** @var InfoUrlChangeRepository */
+    private $infoUrlChangeRepository;
 
-    public function __construct(EventUrlChangedRepository $eventUrlChangedRepository)
+    public function __construct(InfoUrlChangeRepository $infoUrlChangeRepository)
     {
-        $this->eventUrlChangedRepository = $eventUrlChangedRepository;
+        $this->infoUrlChangeRepository = $infoUrlChangeRepository;
     }
 
     /** @param SearchUrlChangedCommand $command
@@ -27,7 +27,7 @@ class SearchUrlChangedHandler implements CommandHandler
      */
     public function handle(Command $command): void
     {
-        $this->eventUrlChangedRepository->persist(
+        $this->infoUrlChangeRepository->persist(
             new EventUrlChanged(
                 new SearchUrl($command->getUrl()),
                 $command->getOccurredOn()
