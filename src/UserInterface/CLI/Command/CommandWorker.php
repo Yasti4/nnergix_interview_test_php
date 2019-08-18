@@ -4,6 +4,7 @@ namespace AML\UserInterface\CLI\Command;
 
 use AML\Application\Bus\CommandBus;
 use AML\Infrastructure\Application\Command\CommandConsumer;
+use AML\Infrastructure\Queue\QueueOption;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -38,11 +39,16 @@ class CommandWorker extends Command
     {
         try {
             try {
-                $command = $this->commandConsumer->consume();
-
+                $command = $this->commandConsumer->consume(
+                    [QueueOption::QUEUE_NAME()->getKey() => 'nnergix-crawler' ]
+                );
                 $this->commandBus->handle($command);
+                $this->commandConsumer->markAsConsumed();
+
+
 
             } catch (\Exception $e) {
+                $this->commandConsumer->markAsFailed();
                 var_dump($e->getMessage()); //TODO: quitar
             }
 

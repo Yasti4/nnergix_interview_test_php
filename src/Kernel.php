@@ -2,6 +2,7 @@
 
 namespace AML;
 
+use AML\Domain\Event\DomainEventPublisher;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
@@ -49,5 +50,17 @@ class Kernel extends BaseKernel
         $routes->import($confDir.'/{routes}/'.$this->environment.'/**/*'.self::CONFIG_EXTS, '/', 'glob');
         $routes->import($confDir.'/{routes}/*'.self::CONFIG_EXTS, '/', 'glob');
         $routes->import($confDir.'/{routes}'.self::CONFIG_EXTS, '/', 'glob');
+    }
+
+    protected function initializeContainer()
+    {
+        parent::initializeContainer();
+
+        $this->setDomainEventListeners();
+    }
+
+    private function setDomainEventListeners(): void
+    {
+        $this->getContainer()->get(DomainEventPublisher::class);
     }
 }

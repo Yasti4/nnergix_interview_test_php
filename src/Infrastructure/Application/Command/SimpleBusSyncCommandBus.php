@@ -19,6 +19,6 @@ class SimpleBusSyncCommandBus implements CommandBus
 
     public function handle(Command $command): void
     {
-        $this->handle($command);
+        $this->bus->handle($command);
     }
 }

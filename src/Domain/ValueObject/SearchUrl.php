@@ -34,6 +34,12 @@ class SearchUrl
         return $this->url;
     }
 
+    public function getUrl(): string //TODO:  Don't remove key "get", otherwise it is serialized empty
+    {
+        return $this->url;
+    }
+
+
     public function equals(SearchUrl $other): bool
     {
         return $this->value() === $other->value();

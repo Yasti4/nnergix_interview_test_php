@@ -20,4 +20,15 @@ interface QueueService
      * @return mixed
      */
     public function dequeue(array $options = []);
+
+    /**
+     * @param array $options Key option must be QueueOptions key enum name
+     */
+    public function markAsConsumed(array $options = []): void;
+
+    /**
+     * @param array $options Key option must be QueueOptions key enum name
+     * @throws JobNotExistsException
+     */
+    public function markAsFailed(array $options = []): void;
 }

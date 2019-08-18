@@ -38,9 +38,9 @@ class ProcessPage
         $page = $this->pageFinder->__invoke($searchUrl, $deep);
 
         /** @var SearchUrlCollection $internalLinks */
-        $internalLinks = $this->searchUrlRepository->searchInternalsUrl($page->url(), $deep)->values();
+        $internalLinks = $this->searchUrlRepository->searchInternalsUrl($page->url(), $deep);
         /** @var SearchUrlCollection $externalLinks */
-        $externalLinks = $this->searchUrlRepository->searchExternalsUrl($page->url(), $deep)->values();
+        $externalLinks = $this->searchUrlRepository->searchExternalsUrl($page->url(), $deep);
         return new PageProcessed($page, $internalLinks, $externalLinks);
     }
 

@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 
-namespace AML\Application\Bus;
+namespace AML\Infrastructure\Application\Command;
 
-
-use AML\Infrastructure\Application\Command\CommandSerializer;
+use AML\Application\Bus\Command;
+use AML\Application\Bus\CommandExecution as CommandExecutionI;
 use AML\Infrastructure\Queue\QueueService;
 
-class MyHandler implements CommandHandler
+class CommandExecution implements CommandExecutionI
 {
     /** @var QueueService */
     private $queueService;
@@ -23,13 +23,10 @@ class MyHandler implements CommandHandler
         $this->commandSerializer = $commandSerializer;
     }
 
-    /** @param ProcessPageCommand $command */
-    public function handle(Command $command): void
+    public function publish(Command $command): void
     {
         $this->queueService->enqueue(
-            $this->commandSerializer->serialize($command),
-            [
-            ]
+            $this->commandSerializer->serialize($command)
         );
     }
 }

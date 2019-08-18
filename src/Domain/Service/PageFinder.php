@@ -2,6 +2,8 @@
 
 namespace AML\Domain\Service;
 
+use AML\Domain\Event\DomainEventPublisher;
+use AML\Domain\Event\SearchUrlChangedCreated;
 use AML\Domain\Exception\InvalidSearchUrlException;
 use AML\Domain\Exception\SearchUrlNotFoundException;
 use AML\Domain\Repository\InfoUrlRepository;
@@ -36,12 +38,10 @@ class PageFinder
             $tempPage = $this->searchUrlRepository->findPage($searchUrl, $deep);
 
             $isChangePage = $this->checkHeaderIfPageChanged($page, $tempPage);
-
+            $isChangePage = true; // TODO: quitar
             if ($isChangePage) {
 
-                /*
-                 * TODO: Evento de dominio informando del cambio
-                 */
+                DomainEventPublisher::instance()->publish(new SearchUrlChangedCreated($tempPage->url()->value()));
 
                 $page = $tempPage;
                 $this->infoUrlRepository->persist($tempPage);

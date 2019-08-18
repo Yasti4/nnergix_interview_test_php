@@ -8,6 +8,10 @@ services:
     AML\UserInterface\CLI\Command\:
         resource: '../src/UserInterface/CLI/Command'
 
+    AML\Application\Bus\CommandBus:
+      class: AML\Infrastructure\Application\Command\SimpleBusSyncCommandBus
+      arguments: ['@simple_bus.command_bus']
+
     # Infrastructure
 
     AML\Infrastructure\Application\Command\CommandSerializer:
@@ -20,10 +24,6 @@ services:
     AML\Infrastructure\Application\Command\CommandConsumer:
       class: AML\Infrastructure\Application\Command\CommandConsumer
 
-    AML\Application\Bus\CommandBus:
-      class: AML\Infrastructure\Application\Command\SimpleBusSyncCommandBus
-      arguments: ['@simple_bus.command_bus']
-
     AML\Infrastructure\Queue\QueueService:
       class: AML\Infrastructure\Queue\Beanstalkd\BeanstalkdQueue
       arguments: ['%beanstalkd.host%', '%beanstalkd.port%', '%beanstalkd.timeout%', '%beanstalkd.tube.async-process-event%']
@@ -34,10 +34,22 @@ services:
         resource: '../src/Application/Service'
         exclude: '*Input.php'
 
-    AML\Application\Bus\MyHandler:
-      class: AML\Application\Bus\MyHandler
+    AML\Application\Listener\:
+      resource: '../src/Application/Listener'
+
+    AML\Application\Bus\CommandExecution:
+      class: AML\Infrastructure\Application\Command\CommandExecution
+
+    AML\Application\Listener\SearchUrlChangedListener:
+      class: AML\Application\Listener\SearchUrlChangedListener
+
+    AML\Application\Bus\CommandHandler:
+      class: AML\Infrastructure\Application\Command\CommandExecution
+
+    AML\Application\Command\SearchUrlChangedHandler:
+      class: AML\Application\Command\SearchUrlChangedHandler
       tags:
-        - { name: command_handler, handles: MediaManager\Application\Bus\ProcessPageCommand }
+        - { name: command_handler, handles: AML\Application\Command\SearchUrlChangedCommand }
 
     # Domain layer
 
@@ -49,6 +61,12 @@ services:
         class: AML\Infrastructure\Domain\Repository\DoctrineInfoUrlRepository
         factory: ["@doctrine", getRepository]
         arguments: ["DomainModel:Page"]
+
+    AML\Domain\Event\DomainEventPublisher:
+      public: true
+      factory: 'AML\Domain\Event\DomainEventPublisher::instance'
+      arguments:
+        - '@AML\Application\Listener\SearchUrlChangedListener'
 
     # Third party
 

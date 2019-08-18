@@ -34,7 +34,7 @@ class QueryCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setName('worker:async-domain-events')
+            ->setName('worker:async-commands')
             ->setDescription('Execute scheduled beanstalkd jobs');
     }
 

@@ -2,6 +2,9 @@
 
 namespace AML\UserInterface\CLI\Command;
 
+use AML\Domain\Exception\InvalidSearchDeepException;
+use AML\Domain\Exception\InvalidSearchUrlException;
+use AML\Domain\Exception\SearchUrlNotFoundException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
@@ -34,10 +37,14 @@ class CommandCrawlerSearch extends Command
     {
         $args = $input->getArguments();
 
-        $result = $this->crawlerSearchService->__invoke(new CrawlerSearchInput(
-            (string)$args['url'] ?? '',
-            (int)$args['deep'] ?? -1
-        ));
+        try {
+            $this->crawlerSearchService->__invoke(new CrawlerSearchInput(
+                (string)$args['url'] ?? '',
+                (int)$args['deep'] ?? -1
+            ));
+        } catch (InvalidSearchUrlException|InvalidSearchDeepException|SearchUrlNotFoundException $e) {
+            var_dump($e->getMessage());
+        }
 
         return 0;
     }
