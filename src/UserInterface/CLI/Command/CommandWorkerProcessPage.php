@@ -52,10 +52,9 @@ class CommandWorkerProcessPage extends Command
 
                 $processPage = $this->crawlerSearchService->__invoke(new CrawlerSearchInput(
                     $command->url()->value() ?? '',
-                    $command->deep()->value() ?? -1
+                    $command->deep()->value() ?? 0,
+                    $command->pageReference()->toString() ?? null
                 ));
-
-//                $this->commandBus->handle($command);
 
                 $this->commandConsumer->markAsConsumed();
             } catch (\Exception $e) {

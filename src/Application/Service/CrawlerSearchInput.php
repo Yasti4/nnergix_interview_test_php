@@ -4,6 +4,7 @@ namespace AML\Application\Service;
 
 use AML\Domain\Exception\InvalidSearchDeepException;
 use AML\Domain\Exception\InvalidSearchUrlException;
+use AML\Domain\ValueObject\PageReference;
 use AML\Domain\ValueObject\SearchUrl;
 use AML\Domain\ValueObject\SearchDeep;
 
@@ -11,13 +12,14 @@ class CrawlerSearchInput
 {
     private $url;
     private $deep;
+    private $pageReference;
 
     /** @throws InvalidSearchUrlException|InvalidSearchDeepException */
-    public function __construct(string $url, int $deep)
+    public function __construct(string $url, int $deep, ?string $pageReference = null)
     {
         $this->url = new SearchUrl($url);
         $this->deep = new SearchDeep($deep);
-
+        $this->pageReference = $pageReference ? PageReference::fromString($pageReference) : $pageReference;
     }
 
     public function url(): SearchUrl
@@ -29,4 +31,11 @@ class CrawlerSearchInput
     {
         return $this->deep;
     }
+
+    public function pageReference(): ?PageReference
+    {
+        return $this->pageReference;
+    }
+
+
 }

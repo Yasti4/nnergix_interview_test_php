@@ -26,6 +26,8 @@ COPY src /app/src
 
 COPY docker/local/nnergix-php/rootfs /
 
+COPY docker/local/nnergix-php/rootfs/supervisor /etc/supervisor
+
 RUN adduser www-data www-data
 RUN usermod -u 1000 www-data
 RUN chown -R www-data:www-data /app/var

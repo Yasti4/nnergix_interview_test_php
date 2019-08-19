@@ -21,7 +21,7 @@ final class Version20190816094034 extends AbstractMigration
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE pages (id INT PRIMARY KEY AUTO_INCREMENT, url TEXT, headers TEXT  NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;');
+        $this->addSql('CREATE TABLE pages (id INT PRIMARY KEY AUTO_INCREMENT, url TEXT, headers TEXT  NOT NULL, reference VARCHAR(36) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;');
 
     }
 

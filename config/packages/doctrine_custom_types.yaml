@@ -1,6 +1,7 @@
 doctrine:
   dbal:
     types:
+      uuid_string: 'Ramsey\Uuid\Doctrine\UuidType'
       search_url_header_array_type: 'AML\Infrastructure\Persistence\Doctrine\Types\SearchUrlHeaderArrayType'
       search_url_type: 'AML\Infrastructure\Persistence\Doctrine\Types\SearchUrlType'
       event_url_changed_array_type: 'AML\Infrastructure\Persistence\Doctrine\Types\EventUrlChangedArrayType'

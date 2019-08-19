@@ -44,21 +44,27 @@ class CrawlerSearchService
 
         $rootUrl = $input->url();
         $rootDeep = $input->deep();
+        $pageReference = $input->pageReference();
 
         $processPage = (new ProcessPage(
             $this->infoUrlRepository,
             $this->searchUrlRepository
-        ))->__invoke($rootUrl, $rootDeep);
+        ))->__invoke($rootUrl, $rootDeep, $pageReference);
 
         $urls = array_merge(
             $processPage->internalLinks()->values(),
             $processPage->externalLinks()->values()
         );
 
+
         for ($i = 0; $i < count($urls) && ($rootDeep->value() > 0); $i++) {
             if (!$rootUrl->equals($urls[$i])) {
 //                echo $urls[$i]->value().PHP_EOL;
-                $cmd = new ProcessPageCommand($urls[$i]->value(), $rootDeep->value() - 1);
+                $cmd = new ProcessPageCommand(
+                    $urls[$i]->value(),
+                    $rootDeep->value() - 1,
+                    $processPage->page()->reference()->toString()
+                );
                 $this->bus->handle($cmd);
             }
         }

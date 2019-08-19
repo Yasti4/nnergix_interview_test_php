@@ -10,3 +10,8 @@ AML\Domain\ValueObject\Page:
     url:
       type: search_url_type
       column: url
+  fields:
+    reference:
+      type: uuid_string
+      nullable: false
+      column: reference

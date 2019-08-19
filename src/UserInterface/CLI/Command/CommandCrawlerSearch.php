@@ -44,11 +44,14 @@ class CommandCrawlerSearch extends Command
         try {
             $processPage = $this->crawlerSearchService->__invoke(new CrawlerSearchInput(
                 (string)$args['url'] ?? '',
-                (int)$args['deep'] ?? -1
+                (int)$args['deep'] ?? 0,
+                null
             ));
 
             $output->writeln('Data found:');
             $output->writeln('Url Search: ' . $processPage->page()->url()->value());
+            $output->writeln('Reference: ' . $processPage->page()->reference()->toString());
+
 
             $this->printHeaders($processPage->page()->headers(), $output);
             $this->printLinks('Internal Links:', $processPage->internalLinks(), $output);

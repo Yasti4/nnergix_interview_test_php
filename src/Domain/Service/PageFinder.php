@@ -9,6 +9,7 @@ use AML\Domain\Exception\SearchUrlNotFoundException;
 use AML\Domain\Repository\InfoUrlRepository;
 use AML\Domain\Repository\SearchUrlRepository;
 use AML\Domain\ValueObject\Page;
+use AML\Domain\ValueObject\PageReference;
 use AML\Domain\ValueObject\SearchDeep;
 use AML\Domain\ValueObject\SearchHeader;
 use AML\Domain\ValueObject\SearchUrl;
@@ -30,12 +31,12 @@ class PageFinder
     }
 
     /** @throws InvalidSearchUrlException|SearchUrlNotFoundException */
-    public function __invoke(SearchUrl $searchUrl, SearchDeep $deep): Page
+    public function __invoke(SearchUrl $searchUrl, SearchDeep $deep, ?PageReference $pageReference = null): Page
     {
         $page = $this->infoUrlRepository->findUrl($searchUrl);
 
         if (!is_null($page)) {
-            $tempPage = $this->searchUrlRepository->findPage($searchUrl, $deep);
+            $tempPage = $this->searchUrlRepository->findPage($searchUrl, $deep, $pageReference);
 
             $isChangePage = $this->checkHeaderIfPageChanged($page, $tempPage);
 //            $isChangePage = true;
@@ -48,8 +49,7 @@ class PageFinder
             }
 
         } else if (is_null($page)) {
-
-            $page = $this->searchUrlRepository->findPage($searchUrl, $deep);
+            $page = $this->searchUrlRepository->findPage($searchUrl, $deep, $pageReference);
 
             $this->infoUrlRepository->persist($page);
         }

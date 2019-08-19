@@ -6,6 +6,7 @@ use AML\Domain\Exception\InvalidSearchUrlException;
 use AML\Domain\Exception\SearchUrlNotFoundException;
 use AML\Domain\Repository\SearchUrlRepository;
 use AML\Domain\ValueObject\Page;
+use AML\Domain\ValueObject\PageReference;
 use AML\Domain\ValueObject\SearchDeep;
 use AML\Domain\ValueObject\SearchHeader;
 use AML\Domain\ValueObject\SearchUrl;
@@ -48,13 +49,12 @@ class SymfonyCrawlerUrlRepository implements SearchUrlRepository
         return $this->searchUrls($url, self::SEARCH_INTERNAL);
     }
 
-    public function findPage(SearchUrl $url, SearchDeep $deep): Page
+    public function findPage(SearchUrl $url, SearchDeep $deep, ?PageReference $pageReference = null): Page
     {
-
         if (is_null($this->responseClient)) {
             $this->getCrawler($url);
         }
-        return new Page($url, $this->getHeaders());
+        return new Page($url, $this->getHeaders(), $pageReference);
     }
 
     /** @throws SearchUrlNotFoundException|InvalidSearchUrlException */
@@ -63,6 +63,7 @@ class SymfonyCrawlerUrlRepository implements SearchUrlRepository
         return $this->searchUrls($url, self::SEARCH_EXTERNAL);
     }
 
+    /** @throws SearchUrlNotFoundException|InvalidSearchUrlException */
     private function searchUrls(SearchUrl $url, string $type): SearchUrlCollection
     {
         $crawler = $this->getCrawler($url);

@@ -14,6 +14,8 @@
         "doctrine/doctrine-migrations-bundle": "^2.0",
         "doctrine/orm": "^2.6",
         "phpstan/phpstan": "^0.11.12",
+        "ramsey/uuid": "^3.8",
+        "ramsey/uuid-doctrine": "^1.5",
         "simple-bus/symfony-bridge": "^5.3",
         "symfony/console": "4.3.*",
         "symfony/css-selector": "4.3.*",
