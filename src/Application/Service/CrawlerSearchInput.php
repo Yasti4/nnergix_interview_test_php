@@ -37,5 +37,4 @@ class CrawlerSearchInput
         return $this->pageReference;
     }
 
-
 }

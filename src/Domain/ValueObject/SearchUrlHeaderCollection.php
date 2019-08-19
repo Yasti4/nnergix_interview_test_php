@@ -20,5 +20,4 @@ class SearchUrlHeaderCollection extends Collection
     {
         return $this->values;
     }
-
 }

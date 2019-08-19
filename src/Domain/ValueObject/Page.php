@@ -51,8 +51,8 @@ class Page
     public function value(): array
     {
         return [
-            self::URL => $this->url,
-            self::HEADER => $this->headers,
+            self::URL => $this->url->value(),
+            self::HEADER => $this->headers->values(),
             self::REFERENCE => $this->reference
         ];
     }

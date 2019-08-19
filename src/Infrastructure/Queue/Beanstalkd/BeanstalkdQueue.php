@@ -5,11 +5,13 @@ declare(strict_types=1);
 
 namespace AML\Infrastructure\Queue\Beanstalkd;
 
-use AML\Infrastructure\Queue\{JobAlreadyExistsException,
+use AML\Infrastructure\Queue\{
+    JobAlreadyExistsException,
     JobNotExistsException,
     NothingToConsumeException,
     QueueOption,
-    QueueService};
+    QueueService
+};
 use Pheanstalk\Contract\PheanstalkInterface;
 use Pheanstalk\Job;
 use Pheanstalk\Pheanstalk;
