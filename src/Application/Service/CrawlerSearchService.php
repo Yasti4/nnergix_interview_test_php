@@ -6,6 +6,7 @@ use AML\Application\Bus\CommandBus;
 use AML\Application\Command\ProcessPageCommand;
 use AML\Domain\Exception\InvalidSearchDeepException;
 use AML\Domain\Exception\InvalidSearchUrlException;
+use AML\Domain\Exception\PageAlreadyProcessedException;
 use AML\Domain\Exception\SearchUrlNotFoundException;
 use AML\Domain\Repository\InfoUrlRepository;
 use AML\Domain\Repository\SearchUrlRepository;
@@ -38,6 +39,7 @@ class CrawlerSearchService
      * @throws InvalidSearchUrlException
      * @throws InvalidSearchDeepException
      * @throws SearchUrlNotFoundException
+     * @throws PageAlreadyProcessedException
      */
     public function __invoke(CrawlerSearchInput $input): PageProcessed
     {
@@ -59,7 +61,6 @@ class CrawlerSearchService
 
         for ($i = 0; $i < count($urls) && ($rootDeep->value() > 0); $i++) {
             if (!$rootUrl->equals($urls[$i])) {
-//                echo $urls[$i]->value().PHP_EOL;
                 $cmd = new ProcessPageCommand(
                     $urls[$i]->value(),
                     $rootDeep->value() - 1,

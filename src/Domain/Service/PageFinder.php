@@ -5,6 +5,7 @@ namespace AML\Domain\Service;
 use AML\Domain\Event\DomainEventPublisher;
 use AML\Domain\Event\SearchUrlChangedCreated;
 use AML\Domain\Exception\InvalidSearchUrlException;
+use AML\Domain\Exception\PageAlreadyProcessedException;
 use AML\Domain\Exception\SearchUrlNotFoundException;
 use AML\Domain\Repository\InfoUrlRepository;
 use AML\Domain\Repository\SearchUrlRepository;
@@ -30,7 +31,8 @@ class PageFinder
         $this->searchUrlRepository = $searchUrlRepository;
     }
 
-    /** @throws InvalidSearchUrlException|SearchUrlNotFoundException */
+    /** @throws InvalidSearchUrlException|SearchUrlNotFoundException|PageAlreadyProcessedException
+     */
     public function __invoke(SearchUrl $searchUrl, SearchDeep $deep, ?PageReference $pageReference = null): Page
     {
         $page = $this->infoUrlRepository->findUrl($searchUrl);
@@ -46,6 +48,8 @@ class PageFinder
 
                 $page = $tempPage;
                 $this->infoUrlRepository->persist($tempPage);
+            } else if (!$isChangePage) {
+                throw new PageAlreadyProcessedException($tempPage->url()->value());
             }
 
         } else if (is_null($page)) {

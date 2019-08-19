@@ -4,6 +4,7 @@ namespace AML\UserInterface\CLI\Command;
 
 use AML\Domain\Exception\InvalidSearchDeepException;
 use AML\Domain\Exception\InvalidSearchUrlException;
+use AML\Domain\Exception\PageAlreadyProcessedException;
 use AML\Domain\Exception\SearchUrlNotFoundException;
 use AML\Domain\ValueObject\SearchHeader;
 use AML\Domain\ValueObject\SearchUrl;
@@ -59,6 +60,9 @@ class CommandCrawlerSearch extends Command
 
         } catch (InvalidSearchUrlException|InvalidSearchDeepException|SearchUrlNotFoundException $e) {
             var_dump($e->getMessage());
+        } catch (PageAlreadyProcessedException $e) {
+
+            $output->writeln($e->getMessage(). json_encode($e->meta(), JSON_PRETTY_PRINT));
         }
 
         return 0;
@@ -66,7 +70,7 @@ class CommandCrawlerSearch extends Command
 
     public function printLinks(string $mensage, SearchUrlCollection $internalLinks, OutputInterface $output)
     {
-        if ($internalLinks) {
+        if ($internalLinks->count()) {
             $output->writeln($mensage);
             /** @var SearchUrl $internalLink */
             foreach ($internalLinks as $internalLink) {
@@ -77,7 +81,7 @@ class CommandCrawlerSearch extends Command
 
     public function printHeaders(SearchUrlHeaderCollection $headers, OutputInterface $output)
     {
-        if ($headers) {
+        if ($headers->count()) {
             $output->writeln('Headers:');
             /** @var SearchHeader $header */
             foreach ($headers as $header) {

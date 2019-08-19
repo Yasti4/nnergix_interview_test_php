@@ -6,11 +6,12 @@ use AML\Domain\Exception\InvalidSearchDeepException;
 
 class SearchDeep
 {
+    public const LIMIT = 10;
     private $deep;
 
     public function __construct(int $deep)
     {
-        if ($deep < 0 || $deep > 10) {
+        if ($deep < 0 || $deep > self::LIMIT) {
             throw new InvalidSearchDeepException($deep);
         }
 

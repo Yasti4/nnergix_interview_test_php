@@ -23,11 +23,14 @@ class SearchUrlChangedListener implements DomainEventListener
         $this->commandExecution = $commandExecution;
     }
 
-    /** @throws InvalidSearchUrlException */
+    /**
+     * @throws InvalidSearchUrlException
+     */
     public function handle(DomainEvent $domainEvent, array $options = [] ): void
     {
         /** @var SearchUrlChangedCreated $domainEvent */
         $this->commandExecution->publish(new SearchUrlChangedCommand(
+                /** @psalm-suppress $domainEvent */
                 $domainEvent->url(),
                 $domainEvent->getDomainEventOccurredOn()
             ),

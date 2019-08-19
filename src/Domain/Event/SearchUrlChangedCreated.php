@@ -5,7 +5,6 @@ declare(strict_types=1);
 
 namespace AML\Domain\Event;
 
-
 class SearchUrlChangedCreated extends DomainEvent
 {
     /** @var string $url */

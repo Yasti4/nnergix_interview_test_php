@@ -25,7 +25,7 @@ class ProcessPageHandler implements CommandHandler
     {
         $this->commandExecution->publish(
             $command,
-            [QueueOption::QUEUE_NAME()->getKey() => 'nnergix-process-page' ] //TODO quitar
+            [QueueOption::QUEUE_NAME()->getKey() => 'nnergix-process-page' ]
         );
     }
 }

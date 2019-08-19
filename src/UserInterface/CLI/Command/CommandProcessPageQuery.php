@@ -39,8 +39,13 @@ class CommandProcessPageQuery extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $reference = $input->getArgument('reference');
+        if (!is_string($reference)) {
+            throw new \InvalidArgumentException('Internal error, the input reference is not string');
+        }
+
         $pages = $this->infoProcessPageService->__invoke(
-            new InfoProcessPageInput((string)$input->getArgument('reference'))
+            new InfoProcessPageInput($reference)
         );
 
         if (empty($pages)) {
@@ -55,7 +60,9 @@ class CommandProcessPageQuery extends Command
                 /** @var SearchHeader $header */
                 return $header->value();
             }, $page->headers()->values()), JSON_PRETTY_PRINT);
-            $output->writeln($headers);
+            if (is_string($headers)) {
+                $output->writeln($headers);
+            }
         }
         return 0;
     }

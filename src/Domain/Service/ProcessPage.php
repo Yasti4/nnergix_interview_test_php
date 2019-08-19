@@ -3,6 +3,7 @@
 namespace AML\Domain\Service;
 
 use AML\Domain\Exception\InvalidSearchUrlException;
+use AML\Domain\Exception\PageAlreadyProcessedException;
 use AML\Domain\Exception\SearchUrlNotFoundException;
 use AML\Domain\Repository\InfoUrlRepository;
 use AML\Domain\Repository\SearchUrlRepository;
@@ -33,7 +34,7 @@ class ProcessPage
         $this->pageFinder = new PageFinder($infoUrlRepository, $searchUrlRepository);
     }
 
-    /** @throws InvalidSearchUrlException|SearchUrlNotFoundException */
+    /** @throws InvalidSearchUrlException|SearchUrlNotFoundException|PageAlreadyProcessedException */
     public function __invoke(SearchUrl $searchUrl, SearchDeep $deep, ?PageReference $pageReference = null): PageProcessed
     {
         $page = $this->pageFinder->__invoke($searchUrl, $deep, $pageReference);

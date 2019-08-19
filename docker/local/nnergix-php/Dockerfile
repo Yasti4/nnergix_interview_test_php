@@ -1,6 +1,8 @@
 FROM php:7.3-apache-stretch
 
+ARG HOST_IP
 ARG COMPOSER_VERSION=1.8.6
+ARG XDEBUG_VERSION=2.7.2
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION};
 
@@ -27,6 +29,12 @@ COPY src /app/src
 COPY docker/local/nnergix-php/rootfs /
 
 COPY docker/local/nnergix-php/rootfs/supervisor /etc/supervisor
+
+RUN pecl install xdebug-${XDEBUG_VERSION}; \
+    docker-php-ext-enable xdebug;
+COPY docker/local/nnergix-php/rootfs/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN echo "xdebug.remote_host=$HOST_IP" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN export PHP_IDE_CONFIG="serverName=docker"
 
 RUN adduser www-data www-data
 RUN usermod -u 1000 www-data
