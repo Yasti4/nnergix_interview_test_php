@@ -9,6 +9,6 @@ interface InfoUrlChangeRepository
 {
     public function persist(EventUrlChanged $eventUrlChange): void;
 
-    /** @return  EventUrlChanged[]*/
+    /** @return  EventUrlChanged[] */
     public function getAll(InfoUrlChangedInput $changedInput): array;
 }

@@ -7,8 +7,8 @@ namespace AML\Infrastructure\Application\Command;
 use AML\Application\Bus\Command;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Serializer\Serializer as SymfonySerializer;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class SymfonyJSONCommandSerializer implements CommandSerializer
 {
@@ -30,7 +30,7 @@ class SymfonyJSONCommandSerializer implements CommandSerializer
 
     public function serialize(Command $command): string
     {
-        return ''.json_encode([
+        return '' . json_encode([
                 self::TYPE_PROPERTY => get_class($command),
                 self::DATA_PROPERTY => $this->serializer->serialize($command, self::FORMAT)
             ]);

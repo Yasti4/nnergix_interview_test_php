@@ -3,7 +3,6 @@
 namespace AML\Application\Service;
 
 use AML\Domain\Repository\InfoUrlRepository;
-use AML\Domain\ValueObject\EventUrlChangedCollection;
 use AML\Domain\ValueObject\Page;
 
 class InfoProcessPageService

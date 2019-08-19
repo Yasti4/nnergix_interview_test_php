@@ -2,23 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="462ced1f-cbe9-4a9a-ac2b-e70334fd007c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/local/nnergix-php/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/local/nnergix-php/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Command/ProcessPageCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Command/ProcessPageCommand.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Command/ProcessPageHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Command/ProcessPageHandler.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Listener/SearchUrlChangedListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Listener/SearchUrlChangedListener.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Service/CrawlerSearchService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Service/CrawlerSearchService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Event/SearchUrlChangedCreated.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Event/SearchUrlChangedCreated.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Service/PageFinder.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Service/PageFinder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Service/CrawlerSearchInput.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Service/CrawlerSearchInput.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Service/InfoProcessPageService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Service/InfoProcessPageService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Exception/Exception.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Exception/Exception.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Exception/InvalidSearchDeepException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Exception/InvalidSearchDeepException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Exception/InvalidSearchUrlException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Exception/InvalidSearchUrlException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Exception/PageAlreadyProcessedException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Exception/PageAlreadyProcessedException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Exception/SearchUrlNotFoundException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Exception/SearchUrlNotFoundException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Repository/InfoUrlChangeRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Repository/InfoUrlChangeRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Repository/InfoUrlRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Repository/InfoUrlRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Repository/SearchUrlRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Repository/SearchUrlRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Service/ProcessPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Service/ProcessPage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/ValueObject/SearchDeep.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/ValueObject/SearchDeep.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/ValueObject/Page.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/ValueObject/Page.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/ValueObject/SearchUrl.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/ValueObject/SearchUrl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Application/Command/SymfonyJSONCommandSerializer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Application/Command/SymfonyJSONCommandSerializer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Domain/Repository/DoctrineInfoUrlChangeRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Domain/Repository/DoctrineInfoUrlChangeRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Persistence/Doctrine/Migrations/Version20190818095253.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Persistence/Doctrine/Migrations/Version20190818095253.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Persistence/Doctrine/Types/EventUrlChangedArrayType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Persistence/Doctrine/Types/EventUrlChangedArrayType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Persistence/Doctrine/Types/SearchUrlHeaderArrayType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Persistence/Doctrine/Types/SearchUrlHeaderArrayType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Queue/Beanstalkd/BeanstalkdQueue.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Queue/Beanstalkd/BeanstalkdQueue.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Queue/JobAlreadyExistsException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Queue/JobAlreadyExistsException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Queue/QueueOption.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Queue/QueueOption.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kernel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UserInterface/CLI/Command/CommandCrawlerSearch.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface/CLI/Command/CommandCrawlerSearch.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UserInterface/CLI/Command/CommandDomainEventInfoUrlChanged.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface/CLI/Command/CommandDomainEventInfoUrlChanged.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UserInterface/CLI/Command/CommandProcessPageQuery.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface/CLI/Command/CommandProcessPageQuery.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UserInterface/CLI/Command/CommandWorkerDomainEventUrlChanged.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface/CLI/Command/CommandWorkerDomainEventUrlChanged.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,52 +50,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Makefile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bin/phpstan">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/phpstan.neon">
+        <entry file="file://$PROJECT_DIR$/src/Application/Listener/SearchUrlChangedListener.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Application/Service/InfoProcessPageService.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UserInterface/CLI/Command/CommandCrawlerSearch.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="635">
-              <caret line="83" column="29" selection-start-line="83" selection-start-column="29" selection-end-line="83" selection-end-column="29" />
+            <state relative-caret-position="198">
+              <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
               <folding>
-                <element signature="e#49#101#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Infrastructure/Domain/Repository/SymfonyCrawlerUrlRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="56" column="20" lean-forward="true" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Domain/ValueObject/Page.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
-              <folding>
-                <element signature="e#42#63#0#PHP" expanded="true" />
+                <element signature="e#70#111#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -92,7 +84,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>XDEBUG_VERSION</find>
       <find>zend_extension</find>
       <find>media</find>
       <find>remote_host</find>
@@ -122,6 +113,7 @@
       <find>json_encode(</find>
       <find>@method</find>
       <find>SearchUrlChangedListener</find>
+      <find>lin</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src</dir>
@@ -179,11 +171,11 @@
         <option value="$PROJECT_DIR$/src/Application/Service/CrawlerSearchService.php" />
         <option value="$PROJECT_DIR$/src/Domain/Exception/PageAlreadyProcessedException.php" />
         <option value="$PROJECT_DIR$/src/Domain/Event/SearchUrlChangedCreated.php" />
-        <option value="$PROJECT_DIR$/src/Application/Listener/SearchUrlChangedListener.php" />
         <option value="$PROJECT_DIR$/src/UserInterface/CLI/Command/CommandCrawlerSearch.php" />
         <option value="$PROJECT_DIR$/src/UserInterface/CLI/Command/CommandProcessPageQuery.php" />
         <option value="$PROJECT_DIR$/src/Application/Service/InfoProcessPageService.php" />
         <option value="$PROJECT_DIR$/phpstan.neon" />
+        <option value="$PROJECT_DIR$/src/Application/Listener/SearchUrlChangedListener.php" />
       </list>
     </option>
   </component>
@@ -340,6 +332,11 @@
             <path>
               <item name="test" type="b2602c69:ProjectViewProjectNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="bin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -450,6 +447,17 @@
               <item name="Domain" type="462c0819:PsiDirectoryNode" />
               <item name="Event" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="var" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="var" type="462c0819:PsiDirectoryNode" />
+              <item name="coverage" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -466,6 +474,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.debug" />
   </component>
   <component name="RecentsManager">
@@ -496,7 +505,19 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="PHPUnit.ProcessPageCommandTest.test_throw_when_incorrect_greater_than_limit_deep">
+  <component name="RunManager" selected="Makefile.php-coverage (1)">
+    <configuration name="php-coverage (1)" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="php-coverage" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <configuration name="php-coverage" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="php-coverage" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
     <configuration name="ProcessPageCommandTest.test_throw_when_incorrect__negative_deep" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="AML\Tests\Unit\Application\Command\ProcessPageCommandTest" file="$PROJECT_DIR$/tests/Unit/Application/Command/ProcessPageCommandTest.php" method="test_throw_when_incorrect__negative_deep" scope="Method" />
       <method v="2" />
@@ -509,25 +530,17 @@
       <TestRunner class="AML\Tests\Unit\Application\Command\ProcessPageCommandTest" file="$PROJECT_DIR$/tests/Unit/Application/Command/ProcessPageCommandTest.php" method="test_throw_when_incorrect_url" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="ProcessPageCommandTest.test_url_a_command" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="AML\Tests\Unit\Application\Command\ProcessPageCommandTest" file="$PROJECT_DIR$/tests/Unit/Application/Command/ProcessPageCommandTest.php" method="test_url_a_command" scope="Method" />
-      <method v="2" />
-    </configuration>
-    <configuration name="SearchUrlChangedCreatedTest.test_should_publish_an_event" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="AML\Tests\Unit\Domain\Event\SearchUrlChangedCreatedTest" file="$PROJECT_DIR$/tests/Unit/Domain/Event/SearchUrlChangedCreatedTest.php" method="test_should_publish_an_event" scope="Method" />
-      <method v="2" />
-    </configuration>
     <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Makefile.php-coverage (1)" />
+        <item itemvalue="Makefile.php-coverage" />
         <item itemvalue="PHPUnit.ProcessPageCommandTest.test_throw_when_incorrect_greater_than_limit_deep" />
         <item itemvalue="PHPUnit.ProcessPageCommandTest.test_throw_when_incorrect__negative_deep" />
         <item itemvalue="PHPUnit.ProcessPageCommandTest.test_throw_when_incorrect_url" />
-        <item itemvalue="PHPUnit.ProcessPageCommandTest.test_url_a_command" />
-        <item itemvalue="PHPUnit.SearchUrlChangedCreatedTest.test_should_publish_an_event" />
       </list>
     </recent_temporary>
   </component>
@@ -542,7 +555,7 @@
       <option name="presentableId" value="Default" />
       <updated>1565887920465</updated>
       <workItem from="1565887922976" duration="6055000" />
-      <workItem from="1565894328808" duration="122455000" />
+      <workItem from="1565894328808" duration="123334000" />
     </task>
     <servers />
   </component>
@@ -579,7 +592,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="128510000" />
+    <option name="totallyTimeSpent" value="129389000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -592,10 +605,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49908924" visible="true" weight="0.3280098" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49908924" visible="true" weight="0.3280098" />
       <window_info id="Structure" order="2" sideWeight="0.50091076" side_tool="true" weight="0.3280098" />
       <window_info anchor="bottom" id="Database Changes" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
@@ -608,7 +620,7 @@
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="10" weight="0.3298647" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.4287201" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.4287201" />
       <window_info anchor="right" id="Coverage" order="0" side_tool="true" weight="0.32985258" />
       <window_info anchor="right" id="make" order="1" />
       <window_info anchor="right" id="Database" order="2" />
@@ -646,13 +658,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="27" column="13" lean-forward="true" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -852,9 +857,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/phpstan">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/UserInterface/CLI/Command/CommandWorkerDomainEventUrlChanged.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -929,13 +931,6 @@
     <entry file="https://schemastore.azurewebsites.net/schemas/json/composer.json">
       <provider selected="true" editor-type-id="httpFileEditor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Application/Listener/SearchUrlChangedListener.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="26" column="40" lean-forward="true" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/services.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -971,33 +966,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Infrastructure/Domain/Repository/SymfonyCrawlerUrlRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="56" column="20" lean-forward="true" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Domain/ValueObject/Page.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
-          <folding>
-            <element signature="e#42#63#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserInterface/CLI/Command/CommandCrawlerSearch.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="635">
-          <caret line="83" column="29" selection-start-line="83" selection-start-column="29" selection-end-line="83" selection-end-column="29" />
-          <folding>
-            <element signature="e#49#101#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Domain/Repository/InfoUrlRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -1005,13 +973,6 @@
           <folding>
             <element signature="e#41#73#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Application/Service/InfoProcessPageService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -1029,6 +990,64 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Application/Service/InfoProcessPageService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserInterface/CLI/Command/CommandCrawlerSearch.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="635">
+          <caret line="83" column="29" selection-start-line="83" selection-start-column="29" selection-end-line="83" selection-end-column="29" />
+          <folding>
+            <element signature="e#49#101#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Infrastructure/Domain/Repository/SymfonyCrawlerUrlRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="56" column="20" lean-forward="true" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Domain/ValueObject/Page.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+          <folding>
+            <element signature="e#42#63#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/phpstan">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Application/Listener/SearchUrlChangedListener.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+          <folding>
+            <element signature="e#70#111#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

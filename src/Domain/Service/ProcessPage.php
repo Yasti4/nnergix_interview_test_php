@@ -7,11 +7,9 @@ use AML\Domain\Exception\PageAlreadyProcessedException;
 use AML\Domain\Exception\SearchUrlNotFoundException;
 use AML\Domain\Repository\InfoUrlRepository;
 use AML\Domain\Repository\SearchUrlRepository;
-use AML\Domain\ValueObject\Page;
 use AML\Domain\ValueObject\PageProcessed;
 use AML\Domain\ValueObject\PageReference;
 use AML\Domain\ValueObject\SearchDeep;
-use AML\Domain\ValueObject\SearchHeader;
 use AML\Domain\ValueObject\SearchUrl;
 use AML\Domain\ValueObject\SearchUrlCollection;
 

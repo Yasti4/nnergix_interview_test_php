@@ -4,9 +4,6 @@ namespace AML\UserInterface\CLI\Command;
 
 use AML\Application\Service\InfoProcessPageInput;
 use AML\Application\Service\InfoProcessPageService;
-use AML\Application\Service\InfoUrlChangedInput;
-use AML\Application\Service\InfoUrlChangedService;
-use AML\Domain\ValueObject\EventUrlChanged;
 use AML\Domain\ValueObject\SearchHeader;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;

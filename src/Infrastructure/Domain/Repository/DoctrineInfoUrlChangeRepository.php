@@ -6,7 +6,6 @@ use AML\Application\Service\InfoUrlChangedInput;
 use AML\Domain\Repository\InfoUrlChangeRepository;
 use AML\Domain\ValueObject\{EventUrlChanged, Page, SearchUrl};
 use Doctrine\ORM\{EntityRepository, OptimisticLockException, ORMException};
-use AML\Domain\ValueObject\EventUrlChangedCollection;
 
 
 class DoctrineInfoUrlChangeRepository extends EntityRepository implements InfoUrlChangeRepository
@@ -29,7 +28,7 @@ class DoctrineInfoUrlChangeRepository extends EntityRepository implements InfoUr
         return $page;
     }
 
-    /** @return  EventUrlChanged[]*/
+    /** @return  EventUrlChanged[] */
     public function getAll(InfoUrlChangedInput $changedInput): array
     {
         return $this->findAll();

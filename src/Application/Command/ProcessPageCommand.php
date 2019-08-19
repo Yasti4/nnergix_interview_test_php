@@ -20,7 +20,7 @@ class ProcessPageCommand implements Command
     {
         $this->url = new SearchUrl($url);
         $this->deep = new SearchDeep($deep);
-        $this->pageReference =  PageReference::fromString($pageReference);
+        $this->pageReference = PageReference::fromString($pageReference);
     }
 
     public function url(): SearchUrl

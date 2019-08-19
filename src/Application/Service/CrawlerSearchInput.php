@@ -5,8 +5,8 @@ namespace AML\Application\Service;
 use AML\Domain\Exception\InvalidSearchDeepException;
 use AML\Domain\Exception\InvalidSearchUrlException;
 use AML\Domain\ValueObject\PageReference;
-use AML\Domain\ValueObject\SearchUrl;
 use AML\Domain\ValueObject\SearchDeep;
+use AML\Domain\ValueObject\SearchUrl;
 
 class CrawlerSearchInput
 {

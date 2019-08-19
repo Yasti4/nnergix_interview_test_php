@@ -6,6 +6,6 @@ class InvalidSearchDeepException extends Exception
 {
     public function __construct(int $deep)
     {
-        parent::__construct('Invalid search Deep', ['deep' => $deep ]);
+        parent::__construct('Invalid search Deep', ['deep' => $deep]);
     }
 }

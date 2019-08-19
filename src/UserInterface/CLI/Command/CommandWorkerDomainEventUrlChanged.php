@@ -40,7 +40,7 @@ class CommandWorkerDomainEventUrlChanged extends Command
         try {
             try {
                 $command = $this->commandConsumer->consume(
-                    [QueueOption::QUEUE_NAME()->getKey() => 'nnergix-crawler' ]
+                    [QueueOption::QUEUE_NAME()->getKey() => 'nnergix-crawler']
                 );
 
                 $this->commandBus->handle($command);

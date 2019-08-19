@@ -4,8 +4,8 @@ namespace AML\Domain\Exception;
 
 abstract class Exception extends \Exception
 {
-    protected $message ;
-    protected $meta ;
+    protected $message;
+    protected $meta;
 
     public function __construct(string $message, array $meta = [])
     {

@@ -2,6 +2,8 @@
 
 namespace AML\UserInterface\CLI\Command;
 
+use AML\Application\Service\CrawlerSearchInput;
+use AML\Application\Service\CrawlerSearchService;
 use AML\Domain\Exception\InvalidSearchDeepException;
 use AML\Domain\Exception\InvalidSearchUrlException;
 use AML\Domain\Exception\PageAlreadyProcessedException;
@@ -11,12 +13,9 @@ use AML\Domain\ValueObject\SearchUrl;
 use AML\Domain\ValueObject\SearchUrlCollection;
 use AML\Domain\ValueObject\SearchUrlHeaderCollection;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-
-use AML\Application\Service\CrawlerSearchService;
-use AML\Application\Service\CrawlerSearchInput;
 
 class CommandCrawlerSearch extends Command
 {
@@ -62,7 +61,7 @@ class CommandCrawlerSearch extends Command
             var_dump($e->getMessage());
         } catch (PageAlreadyProcessedException $e) {
 
-            $output->writeln($e->getMessage(). json_encode($e->meta(), JSON_PRETTY_PRINT));
+            $output->writeln($e->getMessage() . json_encode($e->meta(), JSON_PRETTY_PRINT));
         }
 
         return 0;

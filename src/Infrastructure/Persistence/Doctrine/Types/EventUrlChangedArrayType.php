@@ -3,7 +3,6 @@
 namespace AML\Infrastructure\Persistence\Doctrine\Types;
 
 use AML\Domain\ValueObject\SearchHeader;
-use AML\Domain\ValueObject\SearchUrlHeaderCollection;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
 

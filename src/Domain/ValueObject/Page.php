@@ -59,6 +59,6 @@ class Page
 
     public function __toString(): string
     {
-        return ''.json_encode($this->value());
+        return '' . json_encode($this->value());
     }
 }
