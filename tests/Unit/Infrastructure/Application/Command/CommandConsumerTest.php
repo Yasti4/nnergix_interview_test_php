@@ -39,7 +39,7 @@ class CommandConsumerTest extends TestCase
 
         $this->commandConsumer = new CommandConsumer(
             $this->queueServiceProphesied,
-            $this->commandSerializerProphesied,
+            $this->commandSerializerProphesied
             );
     }
 
@@ -55,7 +55,9 @@ class CommandConsumerTest extends TestCase
 
     public function test_consume_a_command_fails_because_job_already_exists()
     {
-        $this->queueServiceProphesied->method('dequeue')->willThrowException(new JobAlreadyExistsException(0));
+        $this->queueServiceProphesied->method('dequeue')
+            ->willThrowException(new JobAlreadyExistsException(0));
+
         $this->commandSerializerProphesied->method('deserialize')->with('{}');
 
         $this->expectException(JobAlreadyExistsException::class);

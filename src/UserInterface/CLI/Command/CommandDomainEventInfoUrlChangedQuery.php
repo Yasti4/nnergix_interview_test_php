@@ -10,7 +10,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CommandDomainEventInfoUrlChanged extends Command
+class CommandDomainEventInfoUrlChangedQuery extends Command
 {
 
     /** @var LoggerInterface */
@@ -45,7 +45,7 @@ class CommandDomainEventInfoUrlChanged extends Command
         $output->writeln('Data found:');
         foreach ($urlsChanged as $urlChanged) {
             /** @var EventUrlChanged $urlChanged */
-            $output->writeln("[{$urlChanged->occurredOn()}] " . $urlChanged->url()->value());
+            $output->writeln("[{$urlChanged->occurredOn()}] ".$urlChanged->url()->value());
         }
 
         return 0;

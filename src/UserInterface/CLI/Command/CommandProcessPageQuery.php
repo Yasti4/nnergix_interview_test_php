@@ -29,7 +29,7 @@ class CommandProcessPageQuery extends Command
     protected function configure(): void
     {
         $this
-            ->setName('worker:domain-events-url-changed-query')
+            ->setName('worker:async-process-page-query')
             ->setDescription('Execute scheduled beanstalkd jobs')
             ->addArgument('reference', InputArgument::REQUIRED, 'Uuid reference');
     }

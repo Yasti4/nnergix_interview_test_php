@@ -24,7 +24,7 @@ class SearchUrlChangedCommand implements Command
         $this->occurredOn = (new \DateTimeImmutable($occurredOn))->format('Y-m-d H:i:s');
     }
 
-    public function getUrl(): string //TODO: class o simple value?
+    public function getUrl(): string
     {
         return $this->url->value();
     }

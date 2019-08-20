@@ -58,7 +58,7 @@ class CommandWorkerProcessPage extends Command
 
                 $this->commandConsumer->markAsConsumed();
             } catch (\Exception $e) {
-                var_dump($e->getMessage());
+//                var_dump($e->getMessage());
                 $this->commandConsumer->markAsFailed();
             }
 

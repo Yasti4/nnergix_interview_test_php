@@ -44,7 +44,6 @@ class CommandCrawlerSearchTest extends TestCase
     public function test_should_command_named_correctly()
     {
         $headers = new SearchUrlHeaderCollection();
-//        $searchDeep = new SearchDeep(2);
 
         $page = new Page($this->searchUrl, $headers, null);
         $pageProcessed = new PageProcessed($page, new SearchUrlCollection(), new SearchUrlCollection());

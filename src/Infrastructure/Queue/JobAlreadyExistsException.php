@@ -12,7 +12,7 @@ class JobAlreadyExistsException extends Exception
     {
         parent::__construct(
             'job_already_exists',
-            ['id' => $id],
-            );
+            ['id' => $id]
+        );
     }
 }

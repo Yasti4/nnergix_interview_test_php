@@ -19,6 +19,14 @@ class DoctrineInfoUrlRepository extends EntityRepository implements InfoUrlRepos
         $this->getEntityManager()->flush();
     }
 
+    /** @throws ORMException */
+    public function update(Page $page): void
+    {
+        $this->getEntityManager()->merge($page);
+        $this->getEntityManager()->flush();
+    }
+
+
     public function findUrl(SearchUrl $url): ?Page
     {
         /** @var null|Page $page */
