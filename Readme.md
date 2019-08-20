@@ -1,3 +1,4 @@
+
 #Nnergix Crawler
 
 ## Requirements
@@ -12,11 +13,6 @@ cp .env.example .env
 cp .env.example .env.local
 ```
 
-Download lib .phpunit
-```bash
-bin/phpunit
-```
-
 ## Getting started
 
 All commands are in the **MakeFile** file
@@ -29,12 +25,24 @@ All commands are in the **MakeFile** file
 	
 	**In this container**, if it is the first time to execute the migrations
 	
-	`` bin/console doctrine:migrations:migrate``
+	```
+	composer install
+	
+	bin/console doctrine:migrations:migrate
+	```
 4) Execute test `` make php-tests `` or if you are in the php container execute `` bin/phpunit``
 
 5) If you want stop the containers use: 
 
 	`` make docker-compose-down ``
+
+**Important:**
+
+**If in the installation** and after having followed all the steps, **this message appears**:
+'**nnergix-php [....] Entered FATAL state, too many start retries too quickly**', execute commands:
+
+	make docker-compose-down
+	make docker-compose-up
 
 ## Commands Available
 
@@ -94,3 +102,7 @@ bin/console worker:async-domain-events
 bin/console worker:async-process-page
 
 ``` 
+
+\* If you want get access to "beanstalkd" to see all asynchronous process
+
+	http://0.0.0.0:2080/?server=beanstalkd:11300
